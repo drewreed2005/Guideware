@@ -216,3 +216,62 @@ __marimo__/
 
 # Streamlit
 .streamlit/secrets.toml
+
+
+# /-- END OF AUTO-GENERATED PYTHON GITIGNORE --/
+
+
+# ── Node / React ──────────────────────────────────────────
+node_modules/
+dist/
+build/
+.npm/
+.eslintcache
+*.tsbuildinfo
+.next/
+out/
+
+# ── Rust / Tauri ──────────────────────────────────────────
+target/
+Cargo.lock
+*.rs.bk
+src-tauri/target/
+
+# Keep Cargo.lock if this becomes a binary application.
+# For now, ignoring it is fine during early development.
+# Revisit this when packaging desktop builds.
+
+
+# additional ignores
+
+# ── environment and secrets ───────────────────────────────
+.env
+.env.local
+.env.*.local
+*.pem
+*.key
+
+# ── macOS ─────────────────────────────────────────────────
+.DS_Store
+.AppleDouble
+.LSOverride
+._*
+.Spotlight-V100
+.Trashes
+
+# ── IDE and Editor ────────────────────────────────────────
+.vscode/settings.json
+.vscode/launch.json
+.idea/
+*.swp
+*.swo
+*~
+
+# ── Guideware-specific ────────────────────────────────────
+# local test guide files; real samples go elsewhere
+scratch/
+test_files/
+*.gware.bak
+
+# personal instruction files for convention tracking
+git_instr.txt
