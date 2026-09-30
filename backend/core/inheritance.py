@@ -7,7 +7,6 @@ Defines:
 resolve_guide function: returns a deep copy of a guide with resolved inheritance
 '''
 
-
 from backend.model import Guide
 
 
