@@ -12,6 +12,7 @@ Section class: represents a section containing tasks and/or sections within the 
 
 from __future__ import annotations
 
+import uuid
 from datetime import timedelta
 from enum import Enum
 from typing import Annotated, Literal
@@ -29,6 +30,7 @@ class OrderingType(str, Enum):
 
 class Section(InheritableContent):
     type: Literal["section"] = "section"            # type discriminator for faster parsing
+    id: str = Field(default_factory = lambda: str(uuid.uuid4()))
     name: str
     color: str                                      # hexadecimal; defined explicitly for sections
     ordering: OrderingType = OrderingType.ordered
