@@ -24,8 +24,9 @@ Annotation class, including:
 
 '''
 
-from pydantic import BaseModel, Field
 from enum import Enum
+
+from pydantic import BaseModel, Field
 
 
 class ShapeType(str, Enum):
@@ -36,11 +37,13 @@ class ShapeType(str, Enum):
     text = "text"
     freehand = "freehand"
 
+
 class Color(BaseModel):
     r: int = Field(ge=0, le=255)
     g: int = Field(ge=0, le=255)
     b: int = Field(ge=0, le=255)
     a: float = Field(default=1.0, ge=0.0, le=1.0)
+
 
 class Point(BaseModel):
     # relative coordinates (0.0 to 1.0 as proportion of image dimensions)
