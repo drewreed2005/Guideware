@@ -58,10 +58,10 @@ def _resolve_content(
     
     # building resolved content with concrete values
     resolved_content = content.model_copy(update = {
-        "instructions": InheritableField(value = resolved_instructions, inherit = False),
-        "image_path": InheritableField(value = resolved_image_path, inherit = False),
-        "annotations": InheritableField(value = resolved_annotations or [], inherit = False),
-        "resources": InheritableField(value = resolved_resources or [], inherit = False)
+        "instructions": InheritableField[str](value = resolved_instructions, inherit = False),
+        "image_path": InheritableField[str](value = resolved_image_path, inherit = False),
+        "annotations": InheritableField[list[Annotation]](value = resolved_annotations or [], inherit = False),
+        "resources": InheritableField[list[Resource]](value = resolved_resources or [], inherit = False)
     })
     
     # building updated context for children

@@ -7,10 +7,7 @@
         "version": "1.0"
     },
     "resources": [],
-    "image_path": {
-        "value": null,
-        "inherit": false
-    },
+    "image_path": null,
     "estimated_duration": 3600.0,
     "sections": [
         {
