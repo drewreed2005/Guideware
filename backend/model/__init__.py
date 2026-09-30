@@ -1,4 +1,4 @@
-# backend/models/__init.py
+# backend/model/__init__.py
 from annotation import Annotation, Color, Point, ShapeType
 from common import InheritableContent, Resource
 from guide import Guide, GuideMetadata
