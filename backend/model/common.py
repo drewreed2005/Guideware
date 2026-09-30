@@ -24,3 +24,7 @@ class InheritableContent(BaseModel):
     resources: list[Resource] = Field(default_factory = list)
     image_path: str | None = None
     annotations: list[Annotation] = Field(default_factory = list)
+
+# note on overwriting/inheritance of images/annotations:
+# it is intentional that the user be able to inherit one and not the other
+# such that it is possible to create new annotations over the same inherited image
