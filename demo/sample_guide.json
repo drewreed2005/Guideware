@@ -1,0 +1,148 @@
+{
+    "metadata": {
+        "name": "Onboarding Guide",
+        "author": "Dontell",
+        "created_date": "2026-09-01",
+        "description": "A sample guide demonstrating Guideware's core features.",
+        "version": "1.0"
+    },
+    "resources": [],
+    "image_path": null,
+    "estimated_duration": 3600.0,
+    "sections": [
+        {
+            "type": "section",
+            "id": "s1",
+            "name": "Introduction",
+            "color": "#bd0cd7",
+            "ordering": "ordered",
+            "instructions": {
+                "value": "Please read all materials before proceeding.",
+                "inherit": false
+            },
+            "image_path": {
+                "value": null,
+                "inherit": false
+            },
+            "annotations": {
+                "value": [],
+                "inherit": false
+            },
+            "resources": {
+                "value": [],
+                "inherit": false
+            },
+            "children": [
+                {
+                    "type": "task",
+                    "id": "t1",
+                    "name": "Read the welcome document",
+                    "instructions": {
+                        "value": null,
+                        "inherit": true
+                    },
+                    "image_path": {
+                        "value": null,
+                        "inherit": true
+                    },
+                    "annotations": {
+                        "value": null,
+                        "inherit": true
+                    },
+                    "resources": {
+                        "value": null,
+                        "inherit": true
+                    }
+                },
+                {
+                    "type": "task",
+                    "id": "t2",
+                    "name": "Review the terms of use",
+                    "instructions": {
+                        "value": "Pay close attention.",
+                        "inherit": false
+                    },
+                    "image_path": {
+                        "value": null,
+                        "inherit": true
+                    },
+                    "annotations": {
+                        "value": null,
+                        "inherit": true
+                    },
+                    "resources": {
+                        "value": null,
+                        "inherit": true
+                    }
+                }
+            ]
+        },
+        {
+            "type": "section",
+            "id": "s2",
+            "name": "Setup",
+            "color": "#7ED321",
+            "ordering": "unordered",
+            "instructions": {
+                "value": "Complete all setup tasks in any order.",
+                "inherit": false
+            },
+            "image_path": {
+                "value": null,
+                "inherit": false
+            },
+            "annotations": {
+                "value": [],
+                "inherit": false
+            },
+            "resources": {
+                "value": [],
+                "inherit": false
+            },
+            "children": [
+                {
+                    "type": "task",
+                    "id": "t3",
+                    "name": "Set up account info",
+                    "instructions": {
+                        "value": null,
+                        "inherit": true
+                    },
+                    "image_path": {
+                        "value": null,
+                        "inherit": true
+                    },
+                    "annotations": {
+                        "value": null,
+                        "inherit": true
+                    },
+                    "resources": {
+                        "value": null,
+                        "inherit": true
+                    }
+                },
+                {
+                    "type": "task",
+                    "id": "t4",
+                    "name": "Make a test guide",
+                    "instructions": {
+                        "value": null,
+                        "inherit": true
+                    },
+                    "image_path": {
+                        "value": null,
+                        "inherit": true
+                    },
+                    "annotations": {
+                        "value": null,
+                        "inherit": true
+                    },
+                    "resources": {
+                        "value": null,
+                        "inherit": true
+                    }
+                }
+            ]
+        }
+    ]
+}
