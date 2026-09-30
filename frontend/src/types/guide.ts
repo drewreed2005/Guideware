@@ -1,3 +1,16 @@
+/*
+ * src/types/guide.ts
+ * 
+ * Defines the following types for use in data handling:
+ * - InheritableField
+ * - Resource
+ * - Annotation
+ * - Task
+ * - Section
+ * - GuideMetadata
+ * - Guide
+ */
+
 export interface InheritableField<T> {
     value: T | null;
     inherit: boolean;
@@ -21,6 +34,7 @@ export interface Annotation {
 
 export interface Task {
     type: "task";
+    id: string;
     name: string;
     description: string | null;
     estimated_duration: number | null;
@@ -33,6 +47,7 @@ export interface Task {
 
 export interface Section {
     type: "section";
+    id: string;
     name: string;
     color: string;
     ordering: "ordered" | "unordered";
