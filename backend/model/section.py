@@ -16,9 +16,10 @@ from datetime import timedelta
 from enum import Enum
 from typing import Annotated, Literal
 
-from common import InheritableContent
 from pydantic import Field
-from task import Task
+
+from .common import InheritableContent
+from .task import Task
 
 
 class OrderingType(str, Enum):
@@ -27,12 +28,12 @@ class OrderingType(str, Enum):
 
 
 class Section(InheritableContent):
+    type: Literal["section"] = "section"            # type discriminator for faster parsing
     name: str
     color: str                                      # hexadecimal; defined explicitly for sections
     ordering: OrderingType = OrderingType.ordered
     estimated_duration: timedelta | None = None     # expected time to complete all tasks/subsections within
-    children: list[Annotated[Section | Task, Field(discriminator = type)]] = Field(default_factory = list)
-    type: Literal["section"] = "section"            # type discriminator for faster parsing
+    children: list[Annotated[Section | Task, Field(discriminator = "type")]] = Field(default_factory = list)
 
 
 # resolving self-referential type for Pydantic

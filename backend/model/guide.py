@@ -10,9 +10,10 @@ Guide class: represents a full guide containing sections, as well as its metadat
 
 from datetime import date, timedelta
 
-from common import Resource
 from pydantic import BaseModel, Field
-from section import Section
+
+from .common import Resource
+from .section import Section
 
 
 class GuideMetadata(BaseModel):

@@ -8,8 +8,9 @@ Resource class (representing external resources linked to the guide)
 InheritableContent class (a base class for any inheritable content between sections)
 '''
 
-from annotation import Annotation
 from pydantic import BaseModel, Field
+
+from .annotation import Annotation
 
 
 class Resource(BaseModel):
@@ -25,6 +26,8 @@ class InheritableContent(BaseModel):
     image_path: str | None = None
     annotations: list[Annotation] = Field(default_factory = list)
 
-# note on overwriting/inheritance of images/annotations:
-# it is intentional that the user be able to inherit one and not the other
-# such that it is possible to create new annotations over the same inherited image
+# notes on overwriting/inheritance:
+# - it is intentional that the user be able to inherit one attribute and not the other
+#   such that it is possible to create new annotations over the same inherited image
+# - tasks in ordered sections inherit from the prior task in the section, while they
+#   inherit from the section itself if its immediate wrapper section is unordered
