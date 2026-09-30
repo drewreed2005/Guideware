@@ -5,7 +5,7 @@ common.py — COMMON CLASSES/INFO FOR MULTIPLE MODEL CLASSES
 
 Consists of:
 Resource class (representing external resources linked to the guide)
-
+InheritableContent class (a base class for any inheritable content between sections)
 '''
 
 from annotation import Annotation
