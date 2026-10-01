@@ -39,10 +39,10 @@ export interface Task {
     name: string;
     description: string | null;
     estimated_duration: number | null;
-    color_override: string | null;
     instructions: InheritableField<string>;
     image_path: InheritableField<string>;
     annotations: InheritableField<Annotation[]>;
+    color: InheritableField<string>;
     resources: InheritableField<Resource[]>;
 }
 
@@ -50,13 +50,13 @@ export interface Section {
     type: "section";
     id: string;
     name: string;
-    color: string;
     ordering: "ordered" | "unordered";
     estimated_duration: number | null;
     instructions: InheritableField<string>;
     image_path: InheritableField<string>;
     annotations: InheritableField<Annotation[]>;
     resources: InheritableField<Resource[]>;
+    color: InheritableField<string>;
     children: (Section | Task)[];
 }
 

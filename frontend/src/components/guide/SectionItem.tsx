@@ -14,6 +14,9 @@ import { sectionBorderColor, lightenColor } from "../../utils/color";
 import { formatDuration } from "../../utils/duration";
 import { TaskItem } from "./TaskItem";
 
+// until otherwise determined, the default color for sections without resolvable colors is black
+const DEFAULT_COLOR = "#000000"
+
 
 interface SectionItemProps {
     section: Section;
@@ -43,7 +46,7 @@ export function SectionItem({
 }: SectionItemProps) {
     const [collapsed, setCollapsed] = useState(false);
 
-    const borderColor = sectionBorderColor(section.color, depth);
+    const borderColor = sectionBorderColor(section.color.value ?? DEFAULT_COLOR, depth);
     const taskCount = countTasks(section);
     const indentPx = depth * 12;
 
@@ -64,12 +67,12 @@ export function SectionItem({
                     alignItems: "center",
                     justifyContent: "space-between",
                     padding: "6px 10px",
-                    backgroundColor: lightenColor(section.color, 0.92),
+                    backgroundColor: lightenColor(section.color.value ?? DEFAULT_COLOR, 0.92),
                     borderRadius: "4px 4px 0 0",
                     cursor: "pointer",
                     userSelect: "none",
                     outline: isSelected
-                        ? `2px solid ${section.color}`
+                        ? `2px solid ${section.color.value ?? DEFAULT_COLOR}`
                         : "none",
                     outlineOffset: "-2px",
                 }}
@@ -122,7 +125,7 @@ export function SectionItem({
                             <TaskItem
                                 key={child.id}
                                 task={child}
-                                sectionColor={section.color}
+                                sectionColor={section.color.value ?? DEFAULT_COLOR}
                                 isSelected={selectedId === child.id}
                                 onSelect={onSelectTask}
                             />

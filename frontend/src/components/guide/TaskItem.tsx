@@ -24,8 +24,8 @@ export function TaskItem({
     isSelected,
     onSelect,
 }: TaskItemProps) {
-    const bgColor = task.color_override
-        ? lightenColor(task.color_override, 0.85)
+    const bgColor = task.color.value
+        ? lightenColor(task.color.value, 0.85)
         : lightenColor(sectionColor, 0.85);
 
     const selectedStyle = isSelected
