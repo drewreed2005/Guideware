@@ -11,6 +11,7 @@
  * - Guide
  */
 
+
 export interface InheritableField<T> {
     value: T | null;
     inherit: boolean;
@@ -64,10 +65,11 @@ export interface GuideMetadata {
     author: string;
     created_date: string;
     description: string | null;
-    version: string;
+    version: string | null;
 }
 
 export interface Guide {
+    id: null;
     metadata: GuideMetadata;
     resources: Resource[];
     image_path: string | null;
