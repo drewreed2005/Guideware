@@ -42,6 +42,9 @@ class InheritableContent(BaseModel):
     resources: InheritableField[list[Resource]] = Field(
         default_factory = lambda: InheritableField[list[Resource]]()
     )
+    color: InheritableField[str] = Field(
+        default_factory=lambda: InheritableField[str]()
+    )
 
 # notes on overwriting/inheritance:
 # - it is intentional that the user be able to inherit one attribute and not the other
