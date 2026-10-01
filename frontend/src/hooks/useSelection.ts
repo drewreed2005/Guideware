@@ -8,7 +8,7 @@
  * - useSelection function: resolves and returns a selection's type and info using Selection union
  */
 
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import type { Guide, Section, Task } from "../types/guide";
 
 
@@ -19,17 +19,30 @@ export type Selection =
     | null;
 
 
-export function useSelection() {
+export function useSelection(guide?: Guide) {
     const [selection, setSelection] = useState<Selection>(null);
 
+    // displaying the guide info automatically when the guide loads
+    useEffect(() => {
+        if (guide) {
+            setSelection({ kind: "guide", item: guide });
+        }
+    }, [guide]);
+
     const selectTask = (task: Task) =>
-        setSelection({ kind: "task", item: task });
+        setSelection(prev =>
+            prev?.kind === "task" && prev.item.id === task.id ? null : { kind: "task", item: task }
+        );
 
     const selectSection = (section: Section) =>
-        setSelection({ kind: "section", item: section });
+        setSelection(prev =>
+            prev?.kind === "section" && prev.item.id === section.id ? null : { kind: "section", item: section }
+        );
 
     const selectGuide = (guide: Guide) =>
-        setSelection({ kind: "guide", item: guide });
+        setSelection(prev =>
+            prev?.kind === "guide" ? null : { kind: "guide", item: guide }
+        );
 
     const clearSelection = () => setSelection(null);
 

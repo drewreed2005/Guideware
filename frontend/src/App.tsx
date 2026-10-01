@@ -13,7 +13,8 @@ import { DetailPanel } from "./components/detail/DetailPanel";
 
 function App() {
     const { guide, loading, error } = useGuide();
-    const { selection, selectTask, selectSection, selectGuide } = useSelection();
+    const { selection, selectTask, selectSection, selectGuide } =
+        useSelection(guide ?? undefined);
 
     const selectedId = selection?.item.id ?? null;
     const selectedKind = selection?.kind ?? null;
