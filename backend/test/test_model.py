@@ -29,7 +29,10 @@ def test_guide_parses_from_dict():
             {
                 "type": "section",
                 "name": "Section 1",
-                "color": "#4A90D9",
+                "color": {
+                    "value": "#4A90D9",
+                    "inherit": False
+                },
                 "children": [
                     {
                         "type": "task",
@@ -72,7 +75,10 @@ def test_duplicate_ids_raise_validation_error():
                     "type": "section",
                     "id": "s1",
                     "name": "Section One",
-                    "color": "#000000",
+                    "color": {
+                        "value": "#000000",
+                        "inherit": False
+                    },
                     "children": [
                         {"type": "task", "id": "dupe", "name": "Task A"},
                         {"type": "task", "id": "dupe", "name": "Task B"},

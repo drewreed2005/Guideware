@@ -16,13 +16,14 @@ from typing import Any
 
 from backend.model import (
     Annotation,
-    Guide,
     InheritableContent,
     InheritableField,
     OrderingType,
+    ResolvedGuide,
     Resource,
     Section,
     Task,
+    UnresolvedGuide,
 )
 
 
@@ -36,6 +37,7 @@ class InheritanceContext:
     image_path: str | None = None
     annotations: list[Annotation] = field(default_factory = list)
     resources: list[Resource] = field(default_factory = list)
+    color: str | None = None
 
 
 def _resolve_field(inheritable: InheritableField, context_value: Any) -> Any:
@@ -55,13 +57,15 @@ def _resolve_content(
     resolved_image_path = _resolve_field(content.image_path, context.image_path)
     resolved_annotations = _resolve_field(content.annotations, context.annotations)
     resolved_resources = _resolve_field(content.resources, context.resources)
+    resolved_color = _resolve_field(content.color, context.color)
     
     # building resolved content with concrete values
     resolved_content = content.model_copy(update = {
         "instructions": InheritableField[str](value = resolved_instructions, inherit = False),
         "image_path": InheritableField[str](value = resolved_image_path, inherit = False),
         "annotations": InheritableField[list[Annotation]](value = resolved_annotations or [], inherit = False),
-        "resources": InheritableField[list[Resource]](value = resolved_resources or [], inherit = False)
+        "resources": InheritableField[list[Resource]](value = resolved_resources or [], inherit = False),
+        "color": InheritableField[str](value = resolved_color, inherit = False)
     })
     
     # building updated context for children
@@ -69,7 +73,8 @@ def _resolve_content(
         instructions = resolved_instructions,
         image_path = resolved_image_path,
         annotations = resolved_annotations or [],
-        resources = resolved_resources or []
+        resources = resolved_resources or [],
+        color = resolved_color
     )
 
     return resolved_content, child_context
@@ -82,7 +87,8 @@ def _resolve_task(task: Task, context: InheritanceContext) -> Task:
         "instructions": resolved_content.instructions,
         "image_path": resolved_content.image_path,
         "annotations": resolved_content.annotations,
-        "resources": resolved_content.resources
+        "resources": resolved_content.resources,
+        "color": resolved_content.color
     })
 
 
@@ -105,7 +111,8 @@ def _resolve_section(section: Section, context: InheritanceContext) -> Section:
                     instructions = resolved_task.instructions.value,
                     image_path = resolved_task.image_path.value,
                     annotations = resolved_task.annotations.value or [],
-                    resources = resolved_task.resources.value or []
+                    resources = resolved_task.resources.value or [],
+                    color = resolved_task.color.value
                 )
         
         elif child.type == "section":
@@ -118,6 +125,7 @@ def _resolve_section(section: Section, context: InheritanceContext) -> Section:
                     image_path = resolved_child_section.image_path.value,
                     annotations = resolved_child_section.annotations.value or [],
                     resources = resolved_child_section.resources.value or [],
+                    color = resolved_child_section.color.value
                 )
     
     # returning a fully resolved section
@@ -126,11 +134,12 @@ def _resolve_section(section: Section, context: InheritanceContext) -> Section:
         "image_path": resolved_content.image_path,
         "annotations": resolved_content.annotations,
         "resources": resolved_content.resources,
-        "children": resolved_children,
+        "color": resolved_content.color,
+        "children": resolved_children
     })
 
 
-def resolve_guide(guide: Guide) -> Guide:
+def resolve_guide(guide: UnresolvedGuide) -> ResolvedGuide:
     '''
     Returns a deep copy of the guide with all inheritable fields resolved downward
     through the section/task tree.
@@ -140,4 +149,4 @@ def resolve_guide(guide: Guide) -> Guide:
         _resolve_section(section, root_context)
         for section in guide.sections
     ]
-    return guide.model_copy(update = {"sections": resolved_sections})
+    return ResolvedGuide(guide.model_copy(update = {"sections": resolved_sections}))

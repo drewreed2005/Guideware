@@ -22,4 +22,3 @@ class Task(InheritableContent):
     name: str
     description: str | None = None
     estimated_duration: timedelta | None = None     # duration is optional
-    color_override: str | None = None               # hexadecimal value override; if None, derived

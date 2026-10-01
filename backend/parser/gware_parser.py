@@ -13,8 +13,7 @@ import json
 import zipfile
 from pathlib import Path
 
-from backend.core import resolve_guide
-from backend.model import Guide
+from backend.model import Guide, UnresolvedGuide
 
 # constants for JSON/zip file reading
 READ_MODE = 'r'
@@ -24,23 +23,20 @@ JSON_INDENT = 2
 ZIP_JSON_FILENAME = "plan.json"
 
 
-def load_guide_from_json(path: Path) -> Guide:
+def load_guide_from_json(path: Path) -> UnresolvedGuide:
     with open(path, READ_MODE, encoding = JSON_ENCODING) as f:
         raw = json.load(f)
-    guide = Guide.model_validate(raw)
-    return resolve_guide(guide)
+    return UnresolvedGuide(Guide.model_validate(raw))
 
 
-def load_guide(path: Path) -> Guide:
+def load_guide(path: Path) -> UnresolvedGuide:
     # could check if `path.suffix == ".gware`
     # but that can be saved for when exception handling is supported for this
-    
     with zipfile.ZipFile(path, READ_MODE) as zf, zf.open(ZIP_JSON_FILENAME) as f:
         raw = json.load(f)
-    guide = Guide.model_validate(raw)
-    return resolve_guide(guide)
+    return UnresolvedGuide(Guide.model_validate(raw))
 
 
-def save_guide(guide: Guide, path: Path) -> None:
+def save_guide(guide: UnresolvedGuide, path: Path) -> None:
     with zipfile.ZipFile(path, WRITE_MODE, zipfile.ZIP_DEFLATED) as zf:
         zf.writestr(ZIP_JSON_FILENAME, guide.model_dump_json(indent = JSON_INDENT))

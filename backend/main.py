@@ -13,10 +13,11 @@ from pathlib import Path
 from fastapi import FastAPI, HTTPException
 from fastapi.middleware.cors import CORSMiddleware
 
+from backend.core import resolve_guide
 from backend.parser import load_guide_from_json
 
 LOCALHOST_ADDRESS = "http://localhost:5173"
-DEMO_GUIDE_PATH = Path("demo/sample_guide.json")
+DEMO_GUIDE_PATH = Path("backend/demo/sample_guide.json")
 
 app = FastAPI(
     title = "Guideware API",
@@ -40,7 +41,7 @@ def get_demo_guide():
             detail = f"Demo guide not found at {DEMO_GUIDE_PATH}"
         )
     guide = load_guide_from_json(DEMO_GUIDE_PATH)
-    return guide.model_dump()
+    return resolve_guide(guide).model_dump()
 
 
 @app.get("/health")

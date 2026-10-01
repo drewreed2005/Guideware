@@ -14,7 +14,6 @@
             "type": "section",
             "id": "s1",
             "name": "Introduction",
-            "color": "#bd0cd7",
             "ordering": "ordered",
             "instructions": {
                 "value": "Please read all materials before proceeding.",
@@ -30,6 +29,10 @@
             },
             "resources": {
                 "value": [],
+                "inherit": false
+            },
+            "color": {
+                "value": "#bd0cd7",
                 "inherit": false
             },
             "children": [
@@ -50,6 +53,10 @@
                         "inherit": true
                     },
                     "resources": {
+                        "value": null,
+                        "inherit": true
+                    },
+                    "color": {
                         "value": null,
                         "inherit": true
                     }
@@ -73,6 +80,10 @@
                     "resources": {
                         "value": null,
                         "inherit": true
+                    },
+                    "color": {
+                        "value": null,
+                        "inherit": true
                     }
                 }
             ]
@@ -81,7 +92,6 @@
             "type": "section",
             "id": "s2",
             "name": "Setup",
-            "color": "#7ED321",
             "ordering": "unordered",
             "instructions": {
                 "value": "Complete all setup tasks in any order.",
@@ -97,6 +107,10 @@
             },
             "resources": {
                 "value": [],
+                "inherit": false
+            },
+            "color": {
+                "value": "#7ED321",
                 "inherit": false
             },
             "children": [
@@ -119,6 +133,10 @@
                     "resources": {
                         "value": null,
                         "inherit": true
+                    },
+                    "color": {
+                        "value": null,
+                        "inherit": true
                     }
                 },
                 {
@@ -138,6 +156,10 @@
                         "inherit": true
                     },
                     "resources": {
+                        "value": null,
+                        "inherit": true
+                    },
+                    "color": {
                         "value": null,
                         "inherit": true
                     }

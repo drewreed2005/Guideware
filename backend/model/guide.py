@@ -6,9 +6,14 @@ guide.py — GUIDE DOCUMENT MODEL
 Defines:
 GuideMetadata class: represents details about the creation/author of the guide
 Guide class: represents a full guide containing sections, as well as its metadata, resources, sections, etc.
+UnresolvedGuide class: wrapper class representing a guide whose attributes are not resolved for inheritance
+    (all guide files are intended to be *stored* in this unresolved format)
+ResolvedGuide class: wrapper class representing a guide whose attributes have been resolved for inheritance
+    (upon loading a guide for display on the frontend, it should be converted to this format)
 '''
 
 from datetime import date, timedelta
+from typing import NewType
 
 from pydantic import BaseModel, Field, model_validator
 
@@ -52,3 +57,8 @@ class Guide(BaseModel):
                 f"Duplicate IDs found in guide: {duplicates}"
             )
         return self
+
+
+# wrapper classes for guides with unresolved/resolved inheritance
+UnresolvedGuide = NewType("UnresolvedGuide", Guide)
+ResolvedGuide = NewType("ResolvedGuide", Guide)

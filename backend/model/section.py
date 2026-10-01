@@ -32,7 +32,6 @@ class Section(InheritableContent):
     type: Literal["section"] = "section"            # type discriminator for faster parsing
     id: str = Field(default_factory = lambda: str(uuid.uuid4()))
     name: str
-    color: str                                      # hexadecimal; defined explicitly for sections
     ordering: OrderingType = OrderingType.ordered
     estimated_duration: timedelta | None = None     # expected time to complete all tasks/subsections within
     children: list[Annotated[Section | Task, Field(discriminator = "type")]] = Field(default_factory = list)

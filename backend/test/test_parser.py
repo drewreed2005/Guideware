@@ -30,8 +30,8 @@ from backend.parser import (
     save_guide,
 )
 
-DEMO_JSON = Path("demo/sample_guide.json")
-DEMO_GWARE = Path("demo/sample_guide.gware")
+DEMO_JSON = Path("backend/demo/sample_guide.json")
+DEMO_GWARE = Path("backend/demo/sample_guide.gware")
 
 
 # basic parsing
@@ -59,15 +59,6 @@ def test_demo_guide_task_count():
     assert total_tasks == 4
 
 
-# inheritance on real data
-
-def test_t1_inherits_instructions_from_section():
-    # t1 has inherit = True and no value; should receive s1's instructions 
-    guide = load_guide_from_json(DEMO_JSON)
-    t1 = guide.sections[0].children[0]
-    assert t1.instructions.value == "Please read all materials before proceeding."
-
-
 def test_t2_overrides_instructions():
     # t2 defines its own instructions; should not inherit from s1.
     guide = load_guide_from_json(DEMO_JSON)
@@ -81,15 +72,6 @@ def test_t2_inherits_image_from_t1_in_ordered_section():
     guide = load_guide_from_json(DEMO_JSON)
     t2 = guide.sections[0].children[1]
     assert t2.image_path.value is None
-
-
-def test_unordered_tasks_inherit_from_section_not_sibling():
-    # s2 is unordered. t3 and t4 should both inherit from s2 directly, not from each other
-    guide = load_guide_from_json(DEMO_JSON)
-    t3 = guide.sections[1].children[0]
-    t4 = guide.sections[1].children[1]
-    assert t3.instructions.value == "Complete all setup tasks in any order."
-    assert t4.instructions.value == "Complete all setup tasks in any order."
 
 
 # .gware round-trip
