@@ -8,6 +8,7 @@ get_demo_guide function: "GET" from "/demo_guide", returns the resolved demo gui
 
 '''
 
+import os
 from pathlib import Path
 
 from fastapi import FastAPI, HTTPException
@@ -19,6 +20,12 @@ from backend.parser import load_guide_from_json
 LOCALHOST_ADDRESS = "http://localhost:5173"
 DEMO_GUIDE_PATH = Path("backend/demo/sample_guide.json")
 
+allowed_origins = [
+    LOCALHOST_ADDRESS,
+    os.environ.get("FRONTEND_URL", ""),
+]
+
+
 app = FastAPI(
     title = "Guideware API",
     description = "Backend API for the Guideware instructions document/tracker application",
@@ -27,7 +34,7 @@ app = FastAPI(
 
 app.add_middleware(
     CORSMiddleware,
-    allow_origins = [LOCALHOST_ADDRESS],
+    allow_origins = [o for o in allowed_origins if o],
     allow_methods = ["GET", "POST"],
     allow_headers = ["*"]
 )
