@@ -39,8 +39,9 @@ def _make_guide(sections):
 def test_task_inherits_from_section():
     guide = _make_guide([
         Section(
-            id="s1", name="Setup", color="#000000",
+            id="s1", name="Setup",
             instructions=InheritableField(value="Read carefully.", inherit=False),
+            color=InheritableField(value="#000000", inherit=False),
             children=[
                 Task(id="t1", name="First Task", type="task")
             ]
@@ -54,8 +55,9 @@ def test_task_inherits_from_section():
 def test_task_overrides_section():
     guide = _make_guide([
         Section(
-            id="s1", name="Setup", color="#000000",
+            id="s1", name="Setup",
             instructions=InheritableField(value="Section instruction.", inherit=False),
+            color=InheritableField(value="#000000", inherit=False),
             children=[
                 Task(
                     id="t1", name="Override Task", type="task",
@@ -72,8 +74,9 @@ def test_task_overrides_section():
 def test_task_explicitly_declines_inheritance():
     guide = _make_guide([
         Section(
-            id="s1", name="Setup", color="#000000",
+            id="s1", name="Setup",
             instructions=InheritableField(value="Section instruction.", inherit=False),
+            color=InheritableField(value="#000000", inherit=False),
             children=[
                 Task(
                     id="t1", name="No Inherit Task", type="task",
@@ -90,8 +93,9 @@ def test_task_explicitly_declines_inheritance():
 def test_ordered_task_inherits_from_prior_sibling():
     guide = _make_guide([
         Section(
-            id="s1", name="Setup", color="#000000",
+            id="s1", name="Setup",
             ordering=OrderingType.ordered,
+            color=InheritableField(value="#000000", inherit=False),
             children=[
                 Task(
                     id="t1", name="First", type="task",
@@ -109,8 +113,9 @@ def test_ordered_task_inherits_from_prior_sibling():
 def test_unordered_task_does_not_inherit_from_sibling():
     guide = _make_guide([
         Section(
-            id="s1", name="Setup", color="#000000",
+            id="s1", name="Setup",
             ordering=OrderingType.unordered,
+            color=InheritableField(value="#000000", inherit=False),
             children=[
                 Task(
                     id="t1", name="First", type="task",
