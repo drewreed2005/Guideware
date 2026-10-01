@@ -13,9 +13,10 @@ import { DetailPanel } from "./components/detail/DetailPanel";
 
 function App() {
     const { guide, loading, error } = useGuide();
-    const { selection, selectTask, selectSection } = useSelection();
+    const { selection, selectTask, selectSection, selectGuide } = useSelection();
 
     const selectedId = selection?.item.id ?? null;
+    const selectedKind = selection?.kind ?? null;
 
     // note: styling details here are temporary
     if (loading) return <p style={{ padding: "2rem" }}>Loading guide...</p>;
@@ -28,8 +29,10 @@ function App() {
                 <GuideTree
                     guide={guide}
                     selectedId={selectedId}
+                    selectedKind={selectedKind}
                     onSelectTask={selectTask}
                     onSelectSection={selectSection}
+                    onSelectGuide={selectGuide}
                 />
             }
             right={
