@@ -4,7 +4,8 @@
  * Defines the layout/structure of a Section item when selected within the Guideware
  * guide view using the following:
  * - SectionItemProps interface: defines section attributes for use in functions below
- * - countTasks function: calculates the number of
+ * - countTasks function: calculates the total number of tasks associated with a particular section
+ * - SectionItem function: defines the structure and click behaviors of section display
  */
 
 import { useState } from "react";
