@@ -144,7 +144,7 @@ function SectionDetail({ section }: { section: Section }) {
             <DetailHeader
                 kind="Section"
                 name={section.name}
-                color={section.color}
+                color={section.color.value ?? "#000000"}
             />
 
             <DetailField label="Ordering">
