@@ -275,3 +275,7 @@ test_files/
 
 # personal instruction files for convention tracking
 git_instr.txt
+
+# deployment-related
+frontend/.env.production
+frontend/.env.*.local
