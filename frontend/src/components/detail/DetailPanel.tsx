@@ -103,16 +103,17 @@ function ResourceList({ resources }: { resources: Resource[] }) {
 // kind-specific detail views
 
 function GuideDetail({ guide }: { guide: Guide }) {
+    // note: styling details here are temporary
     return (
         <>
             <DetailHeader kind="Guide" name={guide.metadata.name} />
+            <p style={{ margin: "-1rem 0 1.25rem", fontSize: "0.82rem", color: "#999" }}>
+                {guide.metadata.created_date}
+                {guide.metadata.version && (<> · v{guide.metadata.version}</>)}
+            </p> {/* version number only appears if the creator provided one */}
 
             <DetailField label="Author">
                 {guide.metadata.author}
-            </DetailField>
-
-            <DetailField label="Date">
-                {guide.metadata.created_date}
             </DetailField>
 
             {guide.metadata.description && (

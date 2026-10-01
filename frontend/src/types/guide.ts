@@ -65,7 +65,7 @@ export interface GuideMetadata {
     author: string;
     created_date: string;
     description: string | null;
-    version: string;
+    version: string | null;
 }
 
 export interface Guide {
