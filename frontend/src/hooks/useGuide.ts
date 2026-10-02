@@ -9,7 +9,7 @@ import axios from "axios";
 import type { Guide } from "../types/guide";
 
 // for now, just connecting to localhost
-const API_BASE = import.meta.env.VITE_API_BASE;
+const API_BASE = import.meta.env.VITE_API_BASE ?? "https://guideware-t8tu.onrender.com";
 
 export function useGuide() {
     const [guide, setGuide] = useState<Guide | null>(null);
